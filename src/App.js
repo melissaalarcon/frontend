@@ -1,5 +1,3 @@
-//import './App.css';
-
 import React from 'react';
 
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
@@ -12,6 +10,15 @@ import HomePage from './pages/homepage';
 import ServiciosPage from './pages/serviciospage';
 import NosotrosPage from './pages/nosotrospage';
 import ContactoPage from './pages/contactopage';
+
+import './App.css';
+import './styles/components/layout/Header.css';
+import './styles/components/layout/Footer.css';
+import './styles/components/layout/Nav.css';
+import './styles/components/pages/homepage.css';
+import './styles/components/pages/nosotrospage.css';
+import './styles/components/pages/serviciospage.css';
+import './styles/components/pages/contactopage.css';
 
 function App() {
   return (

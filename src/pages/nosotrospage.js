@@ -1,22 +1,42 @@
 import React from "react";
+import '../styles/components/pages/nosotrospage.css';
 
 const NosotrosPage = (props) => {
     return (
-        <div className="container text-center">
-            <h2>Lo que brindamos...</h2>
-                <div className="row">
-                    <div className="staff">
-                    <h4>Germán González</h4>
-                    <h5>Topógrafo y director de obra</h5>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc rutrum venenatis dictum. Suspendisse nec quam erat. Phasellus vitae convallis risus, euismod suscipit magna. Pellentesque velit metus, consequat at dolor ut, posuere hendrerit quam. Nunc eget purus suscipit, cursus lorem ut, laoreet mi. Mauris at orci magna. Suspendisse potenti. Curabitur pharetra felis nisl, eu elementum elit mollis ut.</p>
+        <main className="h02">
+
+            <div className="slider" id="slider">
+                <h2>¿Por qué <i>elegirnos?</i></h2>
+            </div>
+
+
+            <section id="about-us">
+                <div className="container text-center" id="col-father">
+                    <div className="row align-items-center" id="columnas">
+                        <div className="col-4">
+                            <h3>01.</h3>
+                            <h5>Expeciencia probada</h5>
+                            <p>Con años de experiencia en el sector, tenemos un historial sólido de entregas exitosas.</p>
+                        </div>
+                        <div className="col-4">
+                            <h3>02.</h3>
+                            <h5>Profesionalismo</h5>
+                            <p>Nuestro equipo está formado por expertos altamente capacitados y comprometidos con la calidad y la seguridad.</p>
+                        </div>
+                        <div className="col-4">
+                            <h3>03.</h3>
+                            <h5>Comprimiso con el cliente</h5>
+                            <p>Valoramos a nuestros clientes y trabajamos estrechamente con ellos para satisfacer sus necesidades específicas.</p>
+                        </div>
+                        <div className="col-4">
+                            <h3>04.</h3>
+                            <h5>Precios competitivos</h5>
+                            <p>Ofrecemos tarifas competitivas imbatibles y sin comprometer nuestra calidad.</p>
+                        </div>
                     </div>
                 </div>
-                <div className="about-us">
-                    <h3 id="legend">Una empresa familiar de prestigio y tradición</h3>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc rutrum venenatis dictum. Suspendisse nec quam erat. Phasellus vitae convallis risus, euismod suscipit magna.</p>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc rutrum venenatis dictum. Suspendisse nec quam erat. Phasellus vitae convallis risus, euismod suscipit magna.</p>
-                </div>
-        </div>
+            </section>
+        </main>
     );
 }
 
