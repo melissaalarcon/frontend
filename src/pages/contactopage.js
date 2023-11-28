@@ -1,7 +1,72 @@
-import React from "react";
+import React, {useState, useEffect} from 'react';
 import '../styles/components/pages/contactopage.css'
+import axios from 'axios';
 
 const ContactoPage = (props) => {
+
+    const initialForm = {
+        nombre:'',
+        apellido: '',
+        telefono: '',
+        email: '',
+        mensaje: '',
+        provincia: '',
+        municipio: ''
+    }
+    const [sending, setSending] = useState(false);
+    const [msg, setMsg] = useState('');
+    const [formData, setFormData] = useState(initialForm);
+    const [provincias, setProvincias] = useState([]);
+    const [municipios, setMunicipios] = useState([]);
+
+    useEffect(() => {
+        fetchProvincias();
+    }, []);
+
+    const fetchProvincias = async () => {
+        try {
+            const response = await axios.get('https://apis.datos.gob.ar/georef/api/provincias');
+            setProvincias(response.data.provincias);
+            setFormData((oldData) => ({
+                ...oldData,
+                provincia: response.data.provincias[0].id.toString(),
+            }));
+        } catch (error) {
+            console.error('Error al cargar las provincias', error);
+        }
+    }
+    const fetchMunicipios = async () => {
+        try {
+            const response = await axios.get(`https://apis.datos.gob.ar/georef/api/municipios?provincia=${formData.provincia}`);
+            setMunicipios(response.data.municipios);
+        } catch (error) {
+            console.error('Error al cargar las municipios', error);
+        }
+    }
+
+    const handleChange = e => {
+        const { name, value } = e.target;
+        setFormData(oldData => ({
+            ...oldData,
+            [name]: value //forma dinamica
+        }));
+        if (name === 'provincia') {
+            fetchMunicipios(value);
+        }
+    }
+
+    const handleSubmit = async e => {
+        e.preventDefault();
+        setMsg('');
+        setSending(true)
+        const response = await axios.post('http://localhost:3000/api/contacto', formData);
+        setSending(false);
+        setMsg(response.data.message);
+        if (response.data.error === false) {
+            setFormData(initialForm)
+        }
+    }
+ 
     return (
         <main className="h04">
             <div className="container-formulario text-center p-4">
@@ -9,41 +74,53 @@ const ContactoPage = (props) => {
                     <h4>¿Te interesa contratar nuestros servicios?</h4>
                     <h5>Dejanos tu información para ponernos en contacto.</h5>
 
-                <form class="row g-3">
+                <form class="row g-3" onSubmit={handleSubmit}>
                     <div class="col-md-6">
-                        <label for="inputEmail4" class="form-label">Nombre</label>
-                        <input type="email" class="form-control" id="inputEmail4"/>
+                        <label for="First name" class="form-label">Nombre</label>
+                        <input type="text" name='nombre' value={formData.nombre} onChange={handleChange} class="form-control" placeholder="Nombre" aria-label="First name"/>
                     </div>
                     <div class="col-md-6">
-                        <label for="inputPassword4" class="form-label">Apellido</label>
-                        <input type="password" class="form-control" id="inputPassword4"/>
+                        <label for="Last name" class="form-label">Apellido</label>
+                        <input type="text" name='apellido' value={formData.apellido} onChange={handleChange} class="form-control" placeholder="Apellido" aria-label="Last name"/>
                     </div>
                     <div class="col-md-4">
-                        <label for="inputPassword4" class="form-label">Número de teléfono</label>
-                        <input type="password" class="form-control" id="inputNumber4" placeholder="+ Código de área"/>
-                    </div>
-                    <div class="col-md-4">
-                        <label for="inputState" class="form-label">Localidad</label>
-                        <select id="inputState" class="form-select">
-                            <option selected>Elegí...</option>
-                        </select>
+                        <label for="phoneNumber" class="form-label">Número de teléfono</label>
+                        <input type="tel" name='telefono' value={formData.telefono} onChange={handleChange} class="form-control" id="phoneNumber" placeholder="+ Código de área"/>
                     </div>
                     <div class="col-md-4">
                         <label for="inputCity" class="form-label">Provincia</label>
-                        <select id="inputState" class="form-select">
-                            <option selected>Elegí...</option>
+                        <select id="inputState" name="provincia" value={formData.provincia} onChange={handleChange} className="form-select">
+                            <option value="" disabled>Elegí...</option>
+                                {provincias.map((provincia) => (
+                                <option key={provincia.id} value={provincia.id.toString()}>
+                                    {provincia.nombre}</option>
+                                ))}
+                        </select>
+                    </div>
+                    <div class="col-md-4">
+                        <label for="inputState" class="form-label">Municipio</label>
+                        <select id="inputState" class="form-select" name="municipio" value={formData.municipio} onChange={handleChange}>
+                            <option value="" disabled>Elegí...</option>
+                                {municipios.map((municipio) => (
+                                <option key={municipio.id} value={municipio.id.toString()}>
+                                    {municipio.nombre}</option>
+                                ))}
                         </select>
                     </div>
                     <div class="col-12">
-                        <label for="inputAddress" class="form-label">Email</label>
-                        <input type="text" class="form-control" id="inputAddress" placeholder="@gmail.com"/>
+                        <label for="mailAddress" class="form-label">Email</label>
+                        <input type="text" name='email' value={formData.email} onChange={handleChange} class="form-control" id="mailAdress" placeholder="@gmail.com"/>
                     </div>
                     <div class="col-12">
-                        <div class="form-check">
-                        <input class="form-check-input" type="checkbox" id="gridCheck"/>
-                        <label class="form-check-label" for="gridCheck"> Es de mi preferencia que se contacten conmigo por vía telefónica. </label>
+                        <div class="col-md-12">
+                            <label class="form-label">Comentario</label>
+                            <textarea class="form-control" name="mensaje" value={formData.mensaje} onChange={handleChange}></textarea>
                         </div>
                     </div>
+
+                    {sending ? <p>Enviando...</p> : null}
+                    {msg ? <p>{msg}</p> : null}
+
                     <div class="col-12">
                         <button type="submit" class="btn btn-outline-light">Enviar</button></div>
                 </form>

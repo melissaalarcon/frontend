@@ -3,7 +3,7 @@ import '../styles/components/pages/nosotrospage.css';
 
 const NosotrosPage = (props) => {
     return (
-        <main className="h02">
+        <main className="container h02">
 
             <div className="slider" id="slider">
                 <h2>¿Por qué <i>elegirnos?</i></h2>
