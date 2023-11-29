@@ -37,7 +37,7 @@ const HomePage = (props) => {
     
             <div id="welcomeBox">
                 <h2><b>¡Bienvenidos!</b></h2>
-                <p>En Vial Gonett, estamos dedicados a brindar trabajos y soluciones integrales en movimiento de suelos para proyectos de construcción y desarrollo urbano. Con más de 20 años de experiencia en la industria, nos enorgullece ser una de las empresa de tradición y excelencia. Nuestra misión es simple pero poderosa: ofrecer servicios de movimiento de suelos de la más alta calidad, que cumplan con los estándares más exigentes de la industria. Estamos comprometidos con la excelencia en cada proyecto que emprendemos, y nuestra pasión por lo que hacemos se refleja en los resultados finales.</p>
+                <p>En Vial Gonett, estamos dedicados a brindar trabajos y soluciones integrales en movimiento de suelos para proyectos de construcción y desarrollo urbano. Con más de 30 años de experiencia en la industria, nos enorgullece ser una de las empresa de tradición y excelencia. Nuestra misión es simple pero poderosa: ofrecer servicios de movimiento de suelos de la más alta calidad, que cumplan con los estándares más exigentes de la industria. Estamos comprometidos con la excelencia en cada proyecto que emprendemos, y nuestra pasión por lo que hacemos se refleja en los resultados finales.</p>
             </div>
 
         </main>
