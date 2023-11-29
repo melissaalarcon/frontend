@@ -2,8 +2,7 @@
 body {
     font-family: 'DM Sans', sans-serif;
     font-size: 14px;
-    background: linear-gradient(180deg, #151846 0%, #903a3a 100%), linear-gradient(58.72deg, #213598 0%, #202668 100%), radial-gradient(100% 164.72% at 100% 100%, #e12ea6 0%, #31d560 100%), radial-gradient(100% 148.07% at 0% 0%, #FFF500 0%, #51D500 100%);
-    background-blend-mode: overlay, overlay, difference, normal;
+    background: linear-gradient(60deg, #262856 0%, #262856 30%, #a52f2f calc(30% + 1px), #a52f2f 60%, #903749 calc(60% + 1px), #903749 70%, #53354A calc(70% + 1px), #53354A 100%);
   }
 
 .holder { 

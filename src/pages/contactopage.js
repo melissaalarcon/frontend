@@ -27,17 +27,20 @@ const ContactoPage = (props) => {
         try {
             const response = await axios.get('https://apis.datos.gob.ar/georef/api/provincias');
             setProvincias(response.data.provincias);
+            var provinciaActual = response.data.provincias[0].id.toString()
             setFormData((oldData) => ({
                 ...oldData,
-                provincia: response.data.provincias[0].id.toString(),
+                provincia: provinciaActual,
             }));
+            fetchMunicipios(provinciaActual);
+
         } catch (error) {
             console.error('Error al cargar las provincias', error);
         }
     }
-    const fetchMunicipios = async () => {
+    const fetchMunicipios = async (provincia) => {
         try {
-            const response = await axios.get(`https://apis.datos.gob.ar/georef/api/municipios?provincia=${formData.provincia}`);
+            const response = await axios.get(`https://apis.datos.gob.ar/georef/api/municipios?provincia=${provincia}&max=100`);
             setMunicipios(response.data.municipios);
         } catch (error) {
             console.error('Error al cargar las municipios', error);
@@ -66,7 +69,7 @@ const ContactoPage = (props) => {
             setFormData(initialForm)
         }
     }
- 
+
     return (
         <main className="h04">
             <div className="container-formulario text-center p-4">

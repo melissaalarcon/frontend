@@ -6,6 +6,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    margin-bottom: -20px;
 }
 @keyframes slide-in {
     0% {
@@ -39,8 +40,12 @@
         box-sizing: border-box;
         border-radius: 8px;
         box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+        background-color: #262856;
         vertical-align: middle;
     }
+        .col-4:hover {
+            background-color: #353777;
+        }
     .col-4 h3 {
         margin-top: 30px;
     }

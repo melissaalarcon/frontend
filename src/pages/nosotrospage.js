@@ -11,7 +11,7 @@ const NosotrosPage = (props) => {
 
 
             <section id="about-us">
-                <div className="container text-center" id="col-father">
+                <div className="text-center" id="col-father">
                     <div className="row align-items-center" id="columnas">
                         <div className="col-4">
                             <h3>01.</h3>

@@ -15,13 +15,13 @@ const HomePage = (props) => {
                     </div>
                 <div className="carousel-inner">
                     <div className="carousel-item active">
-                        <img src="carousel/1.png" class="d-block w-100" alt="..."/>
+                        <img src="carousel/1.png" class="d-block w-100" alt="movimiento de suelos"/>
                     </div>
                     <div className="carousel-item">
-                        <img src="carousel/2.png" class="d-block w-100" alt="..."/>
+                        <img src="carousel/2.png" class="d-block w-100" alt="venta de tierra"/>
                     </div>
                     <div className="carousel-item">
-                        <img src="..." class="d-block w-100" alt="..."/>
+                        <img src="carousel/3.png" class="d-block w-100" alt="canchas de polo"/>
                     </div>
                 </div>
                 <button className="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">

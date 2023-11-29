@@ -19,13 +19,17 @@ const ServiciosPage = (props) => {
 
     return (   
         <section className='h03'>
-            {loading ? (
-                <p>Cargando...</p>
-            ) : (
-                servicios.map(item => <ServicioItem key = {item.id}
-                    imagen={item.imagen} title={item.titulo} subtitle={item.subtitulo} body={item.cuerpo} />)
-            )
-        }
+            <div className="container text-center p-5" id="cajas-servicios">
+                <div className="column gy-5" id="services">
+                    {loading ? (
+                        <p>Cargando...</p>
+                    ) : (
+                        servicios.map(item => <ServicioItem key = {item.id}
+                            imagen={item.imagen} title={item.titulo} subtitle={item.subtitulo} body={item.cuerpo} />)
+                    )
+                }
+                </div>
+            </div>
         </section>
     );
 }
